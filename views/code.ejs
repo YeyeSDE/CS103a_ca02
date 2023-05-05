@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>A Debugging Tool for Your Codes</h1>
+    <form action="/debug" method="post">
+      <div class="sub-container">
+        <label for="code" class="form-label">Codes to debug:</label>
+        <textarea name="code" id="code" cols="30" rows="10" class="form-control"></textarea>
+      </div>
+      <button type="submit" class="button">Submit</button>
+    </form>
+  </div>
+  <div class="container">
+    <hr>
+    <h2>Generated Results</h2>
+    <ul class="list-group mt-3">
+      <% codes.forEach(code => { %>
+      <li class="list-group-item">
+        <div class="subtitle">
+          <h5><b>Codes Before Debug:</b></h5>
+        </div>
+        <div class="mb-2"><%= code.codesBeforeDebug %></div>
+        <div class="subtitle">
+          <h5><b>Generated Answer</b></h5>
+        </div>
+        <div><i><%= code.codesAfterDebug %></i></div>
+        <form action="/debug/<%= code._id %>?_method=DELETE" method="post">
+          <button type="submit" class="btn btn-sm btn-danger mt-3">Delete</button>
+        </form>
+      </li>
+      <% }) %>
+    </ul>
+  </div>
